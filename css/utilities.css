@@ -77,11 +77,11 @@
 
 /* type of button */
 /* (squared) */
-.btn {
+/* .btn {
   font-size: 16px;
   padding: 7px 12px;
   border: 0;
-}
+} */
 
 .btn-hov:hover {
   background-color: #3b7cff;
@@ -145,9 +145,9 @@
 }
 
 /* flex configuration */
-.d-flex {
+/* .d-flex {
   display: flex;
-}
+} */
 
 /* assegna display:flex ai figli diretti */
 .children-d-flex- > * {
