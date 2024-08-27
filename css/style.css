@@ -11,6 +11,11 @@ main {
   height: 70vh;
   width: 50%;
   margin: 0 auto;
+  padding-top: 50px;
+}
+
+input {
+  width: 100%;
 }
 
 /* footer {
@@ -55,11 +60,12 @@ main {
 /* Utilities */
 
 
-.numbers-box {
-  height: 70%;
+.numbers-box, 
+form {
+  height: 20%;
 }
 
-.numbers-box p {
-  flex-basis: 100%;
-}
+
+
+
 
