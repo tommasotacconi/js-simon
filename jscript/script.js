@@ -2,7 +2,8 @@
 const numbersBox = document.querySelector('.numbers-box');
 const gameTime = document.querySelector('.game-time');
 const form = document.querySelector('form');
-const messageBoxPar = document.querySelector('.message-box p')
+const messageBoxPar = document.querySelector('.message-box p');
+const userNumbers = [];
 // Inizializzo un contatore per il tempo a disposizione
 let remainingTime = 5;
 
@@ -26,11 +27,24 @@ const timer = setInterval(() => {
     // i 5 numeri visualizzati
     form.classList.remove('d-none');
     messageBoxPar.innerText = 'Inserisci i numeri precedenti in qualsiasi ordine.';
-
-
   }
 }, 1000)
-// 6. Controllo con un ciclo sui 5 numeri
-// 7. se sia uguale ad uno dei numeri precedenti mostrati facendo
+// 6. Recupero i numeri inseriti dall'utente nel form al click sul bottone
+form.addEventListener('submit', e => {
+  // impedisco il ricaricamento della pagina
+  e.preventDefault();
+  
+  // con un ciclo for inserisco i numeri nella variabile userNumbers
+  for (let i = 1; userNumbers.length < 5; i++) {
+    const userNumber = document.querySelector(`.col:nth-child(${i}) input`).value;
+    userNumbers.push(userNumber);
+  }
+
+  //mostro in console i numeri recuperati
+  console.log(userNumbers);
+})
+
+// 7. Controllo con un ciclo sui 5 numeri
+// 8. se sia uguale ad uno dei numeri precedenti mostrati facendo
 // girare con un altro ciclo
-// 8. Mostro l'esito del controllo in pagina
+// 9. Mostro l'esito del controllo in pagina
