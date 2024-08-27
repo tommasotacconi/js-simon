@@ -1,0 +1,57 @@
+
+/* Generics */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* header {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+    width: 100%; 
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+}
+ */
+/* footer {
+    padding: 30px;
+    color: white;
+}
+ */
+/* nav {
+    line-height: 30px;
+    background-color: aquamarine;
+    max-width: 1100px;
+    margin: 0 auto;
+} */
+
+/* nav > div{
+    padding: var(--nav-pd)
+} */
+
+/* span {
+    margin: 0 5px;
+} */
+
+/* img {
+    width: 100%;
+} */
+
+/* ul {
+    list-style-type: none;
+    
+    a {
+        text-decoration: none;
+        color: white;
+        margin-right: 5px;
+    }
+
+    li:last-child a {
+        margin-right: 0;
+    }
+    
+} */
+
+/* Utilities */
