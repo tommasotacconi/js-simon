@@ -3,9 +3,9 @@
 const getRandNumbers = (min, max, totalNumbers) => {
   const computedNums = [];
 
-  for (let i = 0; i < totalNumbers; i++) {
+  for (let i = 0; computedNums.length < totalNumbers; i++) {
     const randNum = Math.floor(Math.random() * (max - min + 1)) + min;
-    computedNums.push(randNum);
+    if (!computedNums.includes(randNum)) computedNums.push(randNum);
   }
   
   return computedNums;
@@ -29,7 +29,7 @@ const createCardColumns = (nums, totalCards) => {
   return cardCols;
 }
 
-// funzione per creare colonne dell'input
+// Funzione per creare colonne dell'input
 const createInputColumns = totalInputs => {
   let inputCols = '';
 
@@ -41,8 +41,7 @@ const createInputColumns = totalInputs => {
   
   return inputCols;
 }
-
-
+/*  */
 
 
 // FASE DI PREPARAZIONE
@@ -53,17 +52,21 @@ const messageBoxPar = document.querySelector('.message-box p');
 const userNumbers = [];
 const correctUserNumbers = [];
 let hasGameRestarted = false;
-// Inizializzo un contatore per il tempo a disposizione
+// Inizializzo un contatore per il tempo a disposizione ed un timer
 let remainingTime = 5;
+let timer;
 // Calcolo 5 numeri casuali
 let cpuNumbers;
 
 
 // FASE DI ELABORAZIONE
 playButton.addEventListener('click', () => {
-  // Ripristino imostazioni iniziali per giocare una nuova partita
+  // Imposto la variabile di gioco riavviato a true se ho già un timer
+  if (timer) hasGameRestarted = true;
+  // Ripristino impostazioni iniziali per giocare una nuova partita
   if (hasGameRestarted) {
-    // Resetto il timer
+    // Fermo e resetto il timer
+    clearInterval(timer);
     remainingTime = 5;
     console.log(remainingTime);
     // Riscrivo il messaggio di gioco iniziato
@@ -89,7 +92,7 @@ playButton.addEventListener('click', () => {
   
   // 3. Faccio partire un timer di 30 secondi sfruttando la variabile
   // già creata per il tempo rimanente
-  const timer = setInterval(() => {
+  timer = setInterval(() => {
     // decremento la variabile timer e la stampo in pagina
     gameTime.innerText = --remainingTime;
     // verifico se il tempo è finito e...
@@ -102,17 +105,16 @@ playButton.addEventListener('click', () => {
       // 6.1 Genero gli inputs e il bottone
       form.querySelector('.row').innerHTML = createInputColumns (cpuNumbers.length);
       const checkButton = `<button id="check-btn" class="btn btn-primary">Verifica</button>`;
-      if (!hasGameRestarted) form.innerHTML += checkButton;
+      if (!form.querySelector('#check-btn')) form.innerHTML += checkButton;
       // 6.2 Mostro il form
       form.classList.remove('d-none');
       // 6.3 Richiesta all'utente
       messageBoxPar.innerText = 'Inserisci i numeri precedenti in qualsiasi ordine.';
-      // 6.4 cambio il testo di play-btn
-      if (playButton.innerText == 'Play now') playButton.innerText = 'Play again';
-      // 7. imposto la variabile di gioco riavviato
-      hasGameRestarted = true;
     }
   }, 1000)
+
+  // 7. Cambio il testo di play-btn
+  if (playButton.innerText == 'Play now') playButton.innerText = 'Play again';
 })
 
 // 8. Recupero i numeri inseriti dall'utente nel form al click sul bottone
@@ -145,6 +147,8 @@ form.addEventListener('submit', e => {
     if (cpuNumbers.includes(controlledUserNumber)) correctUserNumbers.push(controlledUserNumber);
   }
 
+
+  // FASE DI PRESENTAZIONE DATI
   // 11. Rimuovo il form e mostro l'esito del controllo in pagina
   form.classList.add('d-none');
   // scrivo il risultato che viene stampato in pagina in una variabile
